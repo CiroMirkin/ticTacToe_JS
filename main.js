@@ -27,10 +27,13 @@ const indexCards = {
 }
 
 let playWhite = true
+let areThereIndexCards = true
 
 const getIndexCard = () => {
     let indexCard = ''
-
+    if(!indexCards.whitePlayer.length) {
+        areThereIndexCards = false
+    }
     if (playWhite) {
         indexCard = indexCards.whitePlayer.at(-1)
         indexCards.whitePlayer.pop()
@@ -46,12 +49,23 @@ const getIndexCard = () => {
     return indexCard 
 }
 
-let areThereIndexCards = true
+let playerMoving = false
+let playerCardIndex = ''
 
 tableGame.addEventListener('click', (e) => {
     if (e.target.classList[0] == 'row__cell' && areThereIndexCards) {
         const cell = document.getElementById(e.target.id)
         cell.innerHTML = getIndexCard() || ''
-        if(!cell.innerHTML) areThereIndexCards = false
+    }
+
+    if(e.target.classList[0] == 'row__cell' && playerMoving && !e.target.firstElementChild) {
+        playerMoving = false
+        e.target.innerHTML = playerCardIndex
+    }
+
+    if(e.target.classList[0] == 'indexCard' && !areThereIndexCards) {
+        playerMoving = true
+        playerCardIndex = e.target.outerHTML
+        e.target.parentElement.innerHTML = ''
     }
 })
