@@ -2,17 +2,6 @@
 
 const tableGame = document.getElementById('tableGame')
 
-const userWinsWhen = [
-    'a1 a2 a3',
-    'b1 b2 b3',
-    'c1 c2 c3',
-    'a1 b1 c1',
-    'a2 b2 c2',
-    'a3 b3 c2',
-    'a1 b2 c3',
-    'a3 b2 c1'
-]
-
 const indexCards = {
     blackPlayer: [
         '<div id="black-3" class="indexCard indexCard--black"><span class="circle"></span></div>',
@@ -26,7 +15,7 @@ const indexCards = {
     ]
 }
 
-let playWhite = true
+let movesTheWhitePlayer = true
 let areThereIndexCards = true
 
 const getIndexCard = () => {
@@ -34,17 +23,17 @@ const getIndexCard = () => {
     if(!indexCards.whitePlayer.length) {
         areThereIndexCards = false
     }
-    if (playWhite) {
+    if (movesTheWhitePlayer) {
         indexCard = indexCards.whitePlayer.at(-1)
         indexCards.whitePlayer.pop()
-        playWhite = false
+        movesTheWhitePlayer = false
         
         return indexCard 
     }
 
     indexCard = indexCards.blackPlayer.at(-1)
     indexCards.blackPlayer.pop()
-    playWhite = true
+    movesTheWhitePlayer = true
 
     return indexCard 
 }

@@ -3,11 +3,14 @@
 body {
     display: grid;
     place-items: center;
+    background: rgb(117, 114, 114);
 }
 
 .tableGame {
+    margin: 5rem 0 0;
     display: flex;
     flex-direction: column;
+    border: 1.5px solid #000;
 }
 .row {
     display: flex;
@@ -30,9 +33,9 @@ body {
 }
 .indexCard--black {
     background-color: #000;
-    border: 1px solid #fff;
+    border: 5px solid #fff;
 }
 .indexCard--white {
     background-color: #fff;
-    border: 1px solid #000;
+    border: 5px solid #000;
 }
